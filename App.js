@@ -15,21 +15,13 @@ const [people,setPeopple] = useState ([
 ])
   return (
     <View style={styles.container}>
- <FlatList>
-   data={people}
-    renderItem={({item})=>{
-      <Text style={styles.newo}>{item.name}</Text>
-    }}
- </FlatList>
+      <FlatList
+      data={people}
+      renderItem={({item})=> (
+        <Text style={styles.newo}>{item.name}</Text>
+      )}>
 
-
-{/* <ScrollView>
-  {people.map(item =>(
-    <View key={item.key}>
-      <Text style={styles.newo}>{item.name}</Text>
-    </View>
-  ))}
-  </ScrollView> */}
+      </FlatList>
     </View>
   );
 }
