@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, TextInput, View ,ScrollView,FlatList} from 'react-native';
+import { StyleSheet, Text, TextInput, View ,ScrollView,FlatList,TouchableOpacity} from 'react-native';
 
 
 export default function App() {
@@ -13,6 +13,12 @@ const [people,setPeopple] = useState ([
 
 
 ])
+const pressHandler  = (key) => {
+  console.log(key)
+  setPeopple ((preupepel)=>{
+return preupepel.filter (preupepel => preupepel.key != key)
+  })
+}
   return (
     <View style={styles.container}>
       <FlatList
@@ -21,7 +27,10 @@ const [people,setPeopple] = useState ([
       keyExtractor={(item)=> item.key}
       data={people}
       renderItem={({item})=>(
-        <Text style={styles.newo}>{item.name}</Text>
+        <TouchableOpacity onPress={() => pressHandler(item.key)}>
+         <Text style={styles.newo}>{item.name}</Text>
+        </TouchableOpacity>
+   
       )}
       
       
