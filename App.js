@@ -16,10 +16,16 @@ const [people,setPeopple] = useState ([
   return (
     <View style={styles.container}>
       <FlatList
+
+      numColumns={2}
+      keyExtractor={(item)=> item.key}
       data={people}
-      renderItem={({item})=> (
+      renderItem={({item})=>(
         <Text style={styles.newo}>{item.name}</Text>
-      )}>
+      )}
+      
+      
+      >
 
       </FlatList>
     </View>
@@ -37,7 +43,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
     padding: 30,
     fontSize: 24,
-    backgroundColor: 'green'
+    backgroundColor: 'green',
+
   }
 
 });
