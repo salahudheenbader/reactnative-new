@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, TextInput, View ,ScrollView} from 'react-native';
+import { StyleSheet, Text, TextInput, View ,ScrollView,FlatList} from 'react-native';
 
 
 export default function App() {
@@ -10,40 +10,26 @@ const [people,setPeopple] = useState ([
   {name: 'nellesharam' ,key: '4' }, 
   {name : 'kearala' , key: '5'},
   {name: 'mahi' ,key: '6' },
-  {name : 'salahudheen' , key: '1'},
-  {name: 'kasaragod' ,key: '2' },
-  {name : 'kalluravi' , key: '3'},
-  {name: 'nellesharam' ,key: '4' }, 
-  {name : 'kearala' , key: '5'},
-  {name: 'mahi' ,key: '6' },
-  {name : 'salahudheen' , key: '1'},
-  {name: 'kasaragod' ,key: '2' },
-  {name : 'kalluravi' , key: '3'},
-  {name: 'nellesharam' ,key: '4' }, 
-  {name : 'kearala' , key: '5'},
-  {name: 'mahi' ,key: '6' },
-  {name : 'salahudheen' , key: '1'},
-  {name: 'kasaragod' ,key: '2' },
-  {name : 'kalluravi' , key: '3'},
-  {name: 'nellesharam' ,key: '4' }, 
-  {name : 'kearala' , key: '5'},
-  {name: 'mahi' ,key: '6' },
-  {name : 'salahudheen' , key: '1'},
-  {name: 'kasaragod' ,key: '2' },
-  {name : 'kalluravi' , key: '3'},
-  {name: 'nellesharam' ,key: '4' }, 
-  {name : 'kearala' , key: '5'},
-  {name: 'mahi' ,key: '6' }
+
+
 ])
   return (
     <View style={styles.container}>
-<ScrollView>
+ <FlatList>
+   data={people}
+    renderItem={({item})=>{
+      <Text style={styles.newo}>{item.name}</Text>
+    }}
+ </FlatList>
+
+
+{/* <ScrollView>
   {people.map(item =>(
     <View key={item.key}>
       <Text style={styles.newo}>{item.name}</Text>
     </View>
   ))}
-  </ScrollView>
+  </ScrollView> */}
     </View>
   );
 }
