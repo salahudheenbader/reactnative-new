@@ -1,42 +1,27 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, TextInput, View ,ScrollView,FlatList,TouchableOpacity} from 'react-native';
-
+import { StyleSheet,Text,View ,FlatList} from 'react-native';
+import { Header } from './compodent/header';
 
 export default function App() {
-const [people,setPeopple] = useState ([
-  {name : 'salahudheen' , key: '1'},
-  {name: 'kasaragod' ,key: '2' },
-  {name : 'kalluravi' , key: '3'},
-  {name: 'nellesharam' ,key: '4' }, 
-  {name : 'kearala' , key: '5'},
-  {name: 'mahi' ,key: '6' },
+const [toods ,setToods] = useState ([ 
+  {text : 'buy coffee' , key : '1'},
+  {text: 'create an app ', key : '2'},
+  {text: 'play on the swich', key: '3'}
+]);
 
-
-])
-const pressHandler  = (key) => {
-  console.log(key)
-  setPeopple ((preupepel)=>{
-return preupepel.filter (preupepel => preupepel.key != key)
-  })
-}
   return (
     <View style={styles.container}>
-      <FlatList
-
-      numColumns={2}
-      keyExtractor={(item)=> item.key}
-      data={people}
-      renderItem={({item})=>(
-        <TouchableOpacity onPress={() => pressHandler(item.key)}>
-         <Text style={styles.newo}>{item.name}</Text>
-        </TouchableOpacity>
-   
-      )}
-      
-      
-      >
-
-      </FlatList>
+          <Header/>
+       <View style ={styles.content}>
+      {/* to form */}
+            <View style={styles.list}>
+                <FlatList data={toods}
+                renderItem ={({item})=>(
+                  <Text>{item.text}</Text>
+                 )}
+                      />
+            </View>
+        </View>  
     </View>
   );
 }
@@ -45,15 +30,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
-  newo:{
-    marginTop: 40,
-    padding: 30,
-    fontSize: 24,
-    backgroundColor: 'green',
-
+  content: {
+    padding : 40,
+  },
+  list : {
+    marginTop : 20
   }
-
 });
