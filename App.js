@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { StyleSheet,Text,View ,FlatList} from 'react-native';
 import { Header } from './compodent/header';
+import TodoItem from './compodent/TodoItem';
 
 export default function App() {
 const [toods ,setToods] = useState ([ 
@@ -9,6 +10,11 @@ const [toods ,setToods] = useState ([
   {text: 'play on the swich', key: '3'}
 ]);
 
+const pressHandler =(key)=>{
+ setToods((prevRdus)=>{
+    return prevRdus.filter(toods => toods.key != key)
+ })
+}
   return (
     <View style={styles.container}>
           <Header/>
@@ -17,9 +23,9 @@ const [toods ,setToods] = useState ([
             <View style={styles.list}>
                 <FlatList data={toods}
                 renderItem ={({item})=>(
-                  <Text>{item.text}</Text>
+                 <TodoItem item={item} pressHandler={pressHandler}/>
                  )}
-                      />
+                  />
             </View>
         </View>  
     </View>
