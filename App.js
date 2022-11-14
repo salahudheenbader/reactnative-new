@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet,Text,View ,FlatList} from 'react-native';
+import { StyleSheet,Text,View ,FlatList, Alert,TouchableWithoutFeedback,Keyboard} from 'react-native';
 import Header from './compodent/Header';
 import TodoItem from './compodent/TodoItem'
 import Addtodo from './compodent/Addtodo';
@@ -18,15 +18,26 @@ const pressHandler =(key)=>{
 }
 
 const submitHandler=(text)=>{
+  if(text.length > 2){
     setToods((prevDods)=>{
-        return [
-          {text: text, key: Math.random().toString() },
-          ...prevDods
-        ];
-    })
+      return [
+        {text: text, key: Math.random().toString() },
+        ...prevDods
+      ];
+  })
+  }else{
+Alert.alert('OOPS!', 'Enter 3 letter',[
+  {text: 'understood', onPress: () => console.log('alert closed') }
+]);
+  }
+
 }
 
   return (
+   <TouchableWithoutFeedback onPress={()=> {
+    Keyboard.dismiss();
+    console.log('dismiss keyborad')
+   }}>
     <View style={styles.container}>
           <Header/>
           <View style={styles.container}>
@@ -34,14 +45,16 @@ const submitHandler=(text)=>{
             <View style={styles.list}>
                 <FlatList data={toods}
                 renderItem ={({item})=>(
-                 <TodoItem item={item} pressHandler={pressHandler}/>
-                 )}
+                     <TodoItem item={item} pressHandler={pressHandler}/>
+                )}
                   />
             </View>
         </View>  
     </View>
+  </TouchableWithoutFeedback>   
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
